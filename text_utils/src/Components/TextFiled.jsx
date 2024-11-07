@@ -1,11 +1,13 @@
 import '../CSS/TextField.css';
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const TextField = (props) => 
 {
     const [textValue, setTextValue] = useState("");
     const [message, setMessage] = useState("");
     const [status, setStatus] = useState("");
+
+    const textCopied = useRef(null);
 
     function handleCut()
     {
@@ -40,6 +42,7 @@ const TextField = (props) =>
 
         navigator.clipboard.writeText(textValue).then( () =>
         {
+            textCopied.current.select();
             setMessage("Text Copied Successfullly");
             setStatus("success");
         })
@@ -92,6 +95,7 @@ const TextField = (props) =>
             <h5 className='text-center mt-2 fs-4 text-uppercase fw-bold' id='text-area-heading'>{props.heading}</h5>
             <textarea name="text-field" className='mt-2 w-100 fs-5 border-2 rounded' id="text-field"
                 value={textValue}
+                ref={textCopied}
                 onChange={(event) => setTextValue(event.target.value)}
             ></textarea>
             <div className="d-flex justify-content-between mt-4">
