@@ -9,14 +9,22 @@ const TextField = (props) =>
 
     const textCopied = useRef(null);
 
-    function handleCut()
+    function isEmpty()
     {
         if(textValue === "")
         {
             setStatus("info");
-            setMessage("Nothing to Cut");
-            return;
+            setMessage("Text Field is Empty");
+            return true;
         }
+
+        return false;
+    }
+
+    function handleCut()
+    {
+        if (isEmpty()) return;
+        
         navigator.clipboard.writeText(textValue).then( () =>
         {
             setMessage("Text Cut Successful");
@@ -33,12 +41,7 @@ const TextField = (props) =>
 
     function handleCopy() 
     {
-        if(textValue === "")
-        {
-            setStatus("info");
-            setMessage("Nothing to Copy");
-            return;
-        }
+        if (isEmpty()) return;
 
         navigator.clipboard.writeText(textValue).then( () =>
         {
@@ -78,12 +81,7 @@ const TextField = (props) =>
 
     function handleClear() 
     {
-        if(textValue === "")
-        {
-            setStatus("info");
-            setMessage("Already Empty");
-            return;
-        }
+        if (isEmpty()) return;
 
         setTextValue("");
         setStatus("success");
@@ -93,6 +91,8 @@ const TextField = (props) =>
 
     function handleLowerCase()
     {
+        if (isEmpty()) return;
+
         setTextValue(textValue.toLowerCase());
         setStatus("success");
         setMessage("Converted To Lower Case");
@@ -100,6 +100,8 @@ const TextField = (props) =>
 
     function handleUpperCase()
     {
+        if (isEmpty()) return;
+
         setTextValue(textValue.toUpperCase());
         setStatus("success");
         setMessage("Converted To Upper Case");
