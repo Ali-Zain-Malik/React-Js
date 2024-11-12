@@ -90,6 +90,21 @@ const TextField = (props) =>
         setMessage("Textarea Cleared");
 
     }
+
+    function handleLowerCase()
+    {
+        setTextValue(textValue.toLowerCase());
+        setStatus("success");
+        setMessage("Converted To Lower Case");
+    }
+
+    function handleUpperCase()
+    {
+        setTextValue(textValue.toUpperCase());
+        setStatus("success");
+        setMessage("Converted To Upper Case");
+    }
+
     return (
         <div className="container main-div d-flex flex-column align-content-center">
             <h5 className='text-center mt-2 fs-4 text-uppercase fw-bold' id='text-area-heading'>{props.heading}</h5>
@@ -103,6 +118,8 @@ const TextField = (props) =>
                 <button onClick={handleCopy} type='button' className='btn btn-primary fw-semibold fs-6 text-uppercase'>copy</button>
                 <button onClick={handlePaste} type='button' className='btn btn-primary fw-semibold fs-6 text-uppercase'>paste</button>
                 <button onClick={handleClear} type='button' className='btn btn-primary fw-semibold fs-6 text-uppercase'>clear</button>
+                <button onClick={handleLowerCase} type='button' className='btn btn-primary fw-semibold fs-6 text-uppercase'>Lower Case</button>
+                <button onClick={handleUpperCase} type='button' className='btn btn-primary fw-semibold fs-6 text-uppercase'>Upper Case</button>
             </div>
             <div className={`alert alert-${status} mt-4 fw-bold fs-5 py-2 w-25 text-center`}>{message}</div>
         </div>
