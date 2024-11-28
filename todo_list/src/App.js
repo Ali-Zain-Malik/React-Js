@@ -1,10 +1,12 @@
 import "./App.css";
+import MainWrapper from "./Components/MainWrapper";
+import TodoForm from "./Components/TodoForm";
 
 function App() 
 {
   return (
     <>
-        Hello world
+        <MainWrapper />
     </>
   );
 }
